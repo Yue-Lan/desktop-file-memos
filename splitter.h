@@ -70,10 +70,10 @@ Q_SIGNALS:
     void writeFlagRequest();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *e);
-    virtual void mouseMoveEvent(QMouseEvent *e);
-    virtual void mouseReleaseEvent(QMouseEvent *e);
-    virtual void paintEvent(QPaintEvent *e);
+    void mousePressEvent(QMouseEvent *e) override;
+    void mouseMoveEvent(QMouseEvent *e) override;
+    void mouseReleaseEvent(QMouseEvent *e) override;
+    void paintEvent(QPaintEvent *e) override;
 
 private:
     void closeEvent(QCloseEvent *e) override;
@@ -83,14 +83,14 @@ private:
     QRect mLastRect;
     QSize mLastSize;
 
-    //TitleBar *mTitleBar = NULL;
+    //TitleBar *mTitleBar = nullptr;
     int mId = -1;
-    QString mTitle = NULL;
-    QString mDirPath = NULL;
+    QString mTitle = nullptr;
+    QString mDirPath = nullptr;
 
-    QVBoxLayout *mLayout = NULL;
-    TitleWidget *mTitleWidget = NULL;
-    IconView *mIconView = NULL;
+    QVBoxLayout *mLayout = nullptr;
+    TitleWidget *mTitleWidget = nullptr;
+    IconView *mIconView = nullptr;
 };
 
 #endif // SPLITTER_H

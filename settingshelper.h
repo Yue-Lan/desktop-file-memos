@@ -35,7 +35,7 @@ public:
     void resetAll();
 
 private:
-    QSettings *mSettings = NULL;
+    QSettings *mSettings = nullptr;
 };
 
 #endif // SETTINGSHELPER_H

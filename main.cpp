@@ -99,14 +99,14 @@ void viewInit() {
     for (int i = 1; i <= idCout; i++) {
         settings->beginGroup("iconview/id_title_table");
         QString title_for_this_id = settings->value(QString(i)).toString();
-        qDebug()<<settings->value(QString(i));
+        //qDebug()<<settings->value(QString(i));
         qDebug()<<"id: "<<i<<", title: "<<title_for_this_id;
         settings->endGroup();
 
         settings->beginGroup("iconview/id_state_table");
         int state = settings->value(QString(i)).toInt();
         settings->endGroup();
-        qDebug()<<settings->value(QString(i));
+        //qDebug()<<settings->value(QString(i));
         if (state == 1) {
             Splitter *page = new Splitter(i, title_for_this_id);
             page->show();

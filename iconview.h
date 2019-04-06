@@ -34,16 +34,16 @@ public:
 
 private:
     int mId = -1;
-    FileModel *fileModel = NULL;
+    FileModel *fileModel = nullptr;
 
     QPoint mLastPos = QPoint(0,0);
 
 protected:
     void paintEvent (QPaintEvent *e) override;
 
-    virtual void mousePressEvent(QMouseEvent *e);
-    virtual void mouseMoveEvent(QMouseEvent *e);
-    virtual void focusOutEvent(QFocusEvent *e);
+    void mousePressEvent(QMouseEvent *e) override;
+    void mouseMoveEvent(QMouseEvent *e) override;
+    void focusOutEvent(QFocusEvent *e) override;
 
     void closeEvent(QCloseEvent *e) override;
 

@@ -46,8 +46,8 @@ public:
 
 private:
     QRect mRect;
-    FileModel *mModel = NULL;
-    IconView *mIconView = NULL;
+    FileModel *mModel = nullptr;
+    IconView *mIconView = nullptr;
 };
 
 #endif // DELEGATE_H

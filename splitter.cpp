@@ -130,7 +130,7 @@ QSize Splitter::getLastWritingSize() {
 }
 
 void Splitter::ensureLastSettings(QSettings *settings) {
-    if (mTitleWidget != NULL) {
+    if (mTitleWidget != nullptr) {
         mTitleWidget->ensureLastSettings(settings);
     }
 }
@@ -179,7 +179,7 @@ void Splitter::mousePressEvent(QMouseEvent *e) {
 
         if(curPos != 22)
         {
-            if (mTitleWidget != NULL) {
+            if (mTitleWidget != nullptr) {
                 mTitleWidget->setEnabled(false);
             }
         }
@@ -264,14 +264,14 @@ void Splitter::mouseMoveEvent(QMouseEvent *e) {
 }
 
 void Splitter::mouseReleaseEvent(QMouseEvent *) {
-    if (mTitleWidget!=NULL) {
+    if (mTitleWidget!=nullptr) {
         if (mIconView->isVisible()) {
             writeSettings();
         }
         mTitleWidget->setEnabled(true);
     }
 
-    if (mTitleWidget!=NULL) {
+    if (mTitleWidget!=nullptr) {
 
     }   
     setCursor(Qt::ArrowCursor);

@@ -43,7 +43,7 @@ void FileOperationJob::jobStart() {
     switch (opFlag) {
     case FILE_OPERATION_MOVE:
         //move
-        if (destDir == NULL) {
+        if (destDir == nullptr) {
             break;
         }
         if (!origList.isEmpty()) {
@@ -73,7 +73,7 @@ void FileOperationJob::jobStart() {
 
     case FILE_OPERATION_COPY:
         //copy
-        if (destDir == NULL) {
+        if (destDir == nullptr) {
             break;
         }
         if (!origList.isEmpty()) {
@@ -111,7 +111,7 @@ void FileOperationJob::jobStart() {
 
                 std::string tmp_str = srcPath.toStdString();
                 GFile *file = g_file_new_for_path(tmp_str.c_str());
-                g_file_trash(file, NULL, NULL);
+                g_file_trash(file, nullptr, nullptr);
                 g_object_unref(file);
             }
         } else if (!origList.isEmpty()) {
@@ -122,7 +122,7 @@ void FileOperationJob::jobStart() {
                 QString tmpStr = srcUrl.toString();
                 std::string tmp_str = tmpStr.toStdString();
                 GFile *file = g_file_new_for_uri(tmp_str.c_str());
-                g_file_trash(file, NULL, NULL);
+                g_file_trash(file, nullptr, nullptr);
                 g_object_unref(file);
             }
         }
@@ -228,7 +228,7 @@ void FileOperationJob::jobStart() {
 
                 std::string tmp_str = destPath.toStdString();
                 GFile* file = g_file_new_for_path(tmp_str.c_str());
-                g_file_trash (file,NULL,NULL);
+                g_file_trash (file,nullptr,nullptr);
                 g_object_unref(file);
             }
         } else if (!origList.isEmpty()) {
@@ -253,7 +253,7 @@ void FileOperationJob::jobStart() {
 
                 std::string tmp_str = destPath.toStdString();
                 GFile* file = g_file_new_for_path(tmp_str.c_str());
-                g_file_trash (file,NULL,NULL);
+                g_file_trash (file,nullptr,nullptr);
                 g_object_unref(file);
             }
         }

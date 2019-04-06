@@ -45,7 +45,7 @@
 
 struct thread_data
 {
-    QSettings *settings = NULL;
+    QSettings *settings = nullptr;
     int id = -1;
     int flag = -1;
 };
@@ -60,9 +60,9 @@ void *write_flag_func (void *thread_data) {
     settings->beginGroup("iconview/id_ishide_table");
     settings->setValue(QString::number(id),flag);
     settings->endGroup();
-    delete settings;
+    settings->deleteLater();
     delete data;
-    return NULL;
+    return nullptr;
 }
 
 void *write_state_func(void *thread_data) {
@@ -73,9 +73,9 @@ void *write_state_func(void *thread_data) {
     settings->beginGroup("iconview/id_state_table");
     settings->setValue(QString(id),flag);
     settings->endGroup();
-    delete settings;
+    settings->deleteLater();
     delete data;
-    return NULL;
+    return nullptr;
 }
 
 TitleWidget::TitleWidget(int id, QString title) {
@@ -87,14 +87,18 @@ TitleWidget::TitleWidget(int id, QString title) {
     titleLabel->setEnabled(true);
     titleLabel->setText(title);
     titleLabel->setContentsMargins(31,0,0,0);
-    titleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    titleLabel->setAlignment(Qt::AlignHCenter);
-    titleLabel->setStyleSheet("font-size:20px;"
-                              "color:white;"
-                              "background-color:rgba(0,0,0,0.6)");
+    //titleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    titleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    titleLabel->setAlignment(Qt::AlignCenter);
+    titleLabel->setStyleSheet("background-color:rgba(0,0,0,0.6);"
+                              "font-size:20px;"
+                              "color:white;");
     titleLabel->setContextMenuPolicy(Qt::CustomContextMenu);
 
     QMenu *titleWidgetMenu = new QMenu(titleLabel);
+    titleWidgetMenu->setStyleSheet("background-color:rgba(0,0,0,0.6);"
+                                   "font-size:16px;"
+                                   "color:white;");
     titleWidgetMenu->setAttribute(Qt::WA_TranslucentBackground,true);
     QAction *renameAction = new QAction(titleWidgetMenu);
     renameAction->setText(tr("rename"));
@@ -179,8 +183,8 @@ TitleWidget::TitleWidget(int id, QString title) {
         QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QApplication::organizationName(), QApplication::applicationName());
         data->settings = settings;
         data->flag = -1;
-        qDebug()<<data->id<<data->flag;
-        pthread_create(&t1, NULL, write_state_func, static_cast<void*>(data));
+        //qDebug()<<data->id<<data->flag;
+        pthread_create(&t1, nullptr, write_state_func, static_cast<void*>(data));
     });
 
     connect(deleteAction, &QAction::triggered, [=](){
@@ -211,8 +215,8 @@ TitleWidget::TitleWidget(int id, QString title) {
         QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QApplication::organizationName(), QApplication::applicationName());
         data->settings = settings;
         data->flag = -1;
-        qDebug()<<data->id<<data->flag;
-        pthread_create(&t1, NULL, write_state_func, static_cast<void*>(data));
+        //qDebug()<<data->id<<data->flag;
+        pthread_create(&t1, nullptr, write_state_func, static_cast<void*>(data));
     });
 
 }
@@ -221,7 +225,7 @@ void TitleWidget::ensureLastSettings(QSettings *settings) {
     settings->beginGroup("iconview/id_ishide_table");
     int flag = settings->value(QString::number(mId)).toInt();
     settings->endGroup();
-    qDebug()<<flag;
+    //qDebug()<<flag;
     if (flag == 1) {
         mHideShowButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowDown));
         isViewHiden = true;
@@ -241,7 +245,7 @@ void TitleWidget::mousePressEvent(QMouseEvent *e) {
 
 void TitleWidget::mouseMoveEvent(QMouseEvent *e) {
     if (isPressed) {
-        if (parentWidget() != NULL)
+        if (parentWidget() != nullptr)
             parentWidget()->move(e->globalPos()-clickedPos);
     }
     QWidget::mouseMoveEvent(e);
@@ -290,6 +294,6 @@ void TitleWidget::onWriteFlagRequest() {
     } else {
         data->flag = 2;
     }
-    qDebug()<<data->id<<data->flag;
-    pthread_create(&t1, NULL, write_flag_func, static_cast<void*>(data));
+    //qDebug()<<data->id<<data->flag;
+    pthread_create(&t1, nullptr, write_flag_func, static_cast<void*>(data));
 }

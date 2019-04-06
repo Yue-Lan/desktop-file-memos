@@ -62,7 +62,7 @@ QIcon IconProvider::icon(const QFileInfo &info) const {
         std::string tmp_str = info.filePath().toStdString();
         const char* file_path = tmp_str.c_str();
         GDesktopAppInfo *desktop_app_info = g_desktop_app_info_new_from_filename(file_path);
-        if (desktop_app_info != NULL) {
+        if (desktop_app_info != nullptr) {
             char* tmp_icon_name = g_desktop_app_info_get_string(desktop_app_info, "Icon");
             QIcon desktopFileIcon = QIcon::fromTheme(QString(tmp_icon_name));
             if (desktopFileIcon.isNull()) {
@@ -77,7 +77,7 @@ QIcon IconProvider::icon(const QFileInfo &info) const {
             } else {
                 fileIcon = desktopFileIcon;
             }
-            if (tmp_icon_name != NULL) {
+            if (tmp_icon_name != nullptr) {
                 g_free (tmp_icon_name);
             }
         }

@@ -53,7 +53,7 @@ public Q_SLOTS:
 private:
     QList<QUrl> origList;
     QStringList origList1;
-    QString destDir = NULL;
+    QString destDir = nullptr;
     int opFlag = -1;
 };
 

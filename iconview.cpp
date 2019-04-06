@@ -85,6 +85,8 @@ IconView::IconView(int id, QString rootPath) {
 
     setVerticalScrollBar(scrollbar);
 
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     //QIcon::setThemeName("ukui-icon-theme");
 
     mId = id;
