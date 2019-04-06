@@ -37,7 +37,7 @@ public:
 
 private:
     int mIconSize = 36;
-    QMimeDatabase *mimeDatabase = NULL;
+    QMimeDatabase *mimeDatabase = nullptr;
 };
 
 #endif // ICONPROVIDER_H

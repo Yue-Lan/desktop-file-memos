@@ -33,7 +33,7 @@ public:
     IconProvider *getIconProvider() {return mIconProvider;}
 
 private:
-    IconProvider *mIconProvider = NULL;
+    IconProvider *mIconProvider = nullptr;
 };
 
 #endif // FILEMODEL_H

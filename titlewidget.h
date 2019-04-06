@@ -46,8 +46,8 @@ public Q_SLOTS:
 
 private:
     int mId = -1;
-    QString mTitle = NULL;
-    QString mDirPath = NULL;
+    QString mTitle = nullptr;
+    QString mDirPath = nullptr;
     bool isPressed = false;
     QPoint clickedPos;
 
