@@ -48,6 +48,7 @@ struct thread_data
     QSettings *settings = nullptr;
     int id = -1;
     int flag = -1;
+    char *title = nullptr;
 };
 
 typedef thread_data settings_data;
@@ -75,6 +76,19 @@ void *write_state_func(void *thread_data) {
     settings->endGroup();
     settings->deleteLater();
     delete data;
+    return nullptr;
+}
+
+void *write_title_func(void *thread_data) {
+    settings_data *data = static_cast<settings_data*>(thread_data);
+    QSettings *settings = data->settings;
+    int id = data->id;
+    char *title = data->title;
+    settings->beginGroup("iconview/id_title_table");
+    settings->setValue(QString(id),QString(title));
+    settings->endGroup();
+    settings->deleteLater();
+    delete title;
     return nullptr;
 }
 
@@ -135,7 +149,6 @@ TitleWidget::TitleWidget(int id, QString title) {
     connect(mHideShowButton, &QPushButton::clicked, this, &TitleWidget::onButtonClicked);
 
     connect(titleLabel, &QLabel::customContextMenuRequested, [=](){
-        qDebug()<<"rename menu";
         titleWidgetMenu->exec(QCursor::pos());
     });
 
@@ -151,6 +164,16 @@ TitleWidget::TitleWidget(int id, QString title) {
         connect(tmpEdit, &QLineEdit::editingFinished, [=](){
             titleLabel->setText(tmpEdit->text());
             //settings of name ini
+            pthread_t t1;
+            settings_data *data = new settings_data;
+            data->id = mId;
+
+            QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QApplication::organizationName(), QApplication::applicationName());
+            data->settings = settings;
+            std::string tmp_str = tmpEdit->text().toStdString();
+            char* title = strdup(tmp_str.c_str());
+            data->title = title;
+            pthread_create(&t1, nullptr, write_title_func, static_cast<void*>(data));
             hLayout->replaceWidget(tmpEdit,titleLabel);
             tmpEdit->deleteLater();
         });

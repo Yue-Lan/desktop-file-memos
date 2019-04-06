@@ -111,7 +111,7 @@ IconView::IconView(int id, QString rootPath) {
 
     int size = fileModel->getIconProvider()->getIconSize();
     setIconSize(QSize(size,size));
-    setUniformItemSizes(true); //same size for all items
+    //setUniformItemSizes(true); //same size for all items
     setMovement(QListView::Snap); //gird move
     //setWordWrap(true); //text auto change row
     //setViewportMargins(0,10,0,10);

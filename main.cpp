@@ -71,6 +71,15 @@ int already_running(const char *filename) {
 
 int main(int argc, char *argv[]) {
 
+    argc = 3;
+    argv[1] = strdup("-platformtheme");
+    argv[2] = strdup("gtk3");
+/*
+    qDebug()<<argc;
+    for (int i = 0; i < argc; i++) {
+        qDebug()<<argv[i];
+    }
+*/
     QApplication a(argc, argv);
     a.setOrganizationName("com.kylin");
     a.setApplicationName("desktopfilememos");
