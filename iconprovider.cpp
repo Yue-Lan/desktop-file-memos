@@ -84,8 +84,27 @@ QIcon IconProvider::icon(const QFileInfo &info) const {
         return fileIcon;
     }
 
+    QString filePath = info.filePath();
+    std::string str = filePath.toStdString();
+    const char* file_path = str.c_str();
+    GFile *g_file = g_file_new_for_path(file_path);
+    GFileInfo *file_info = g_file_query_info(g_file,
+                                             G_FILE_ATTRIBUTE_STANDARD_ICON,
+                                             G_FILE_QUERY_INFO_NONE,
+                                             nullptr,
+                                             nullptr);
+
+    GIcon *g_icon = g_file_info_get_icon (file_info);
+    const gchar* const* icon_names = g_themed_icon_get_names(G_THEMED_ICON (g_icon));
+    icon_names++; //we need use second string, first string is not correct some times (for example, a wps-office-doc).
+    QString iconName = QString (*icon_names);
+    g_object_unref(g_icon);
+    g_object_unref(g_file);
+    return QIcon::fromTheme(iconName);
+/*
     if (mimeDatabase->mimeTypeForUrl(QUrl(info.filePath())).aliases().isEmpty()) {
         return QIcon::fromTheme(mimeDatabase->mimeTypeForFile(info).iconName());
     }
     return QIcon::fromTheme((mimeDatabase->mimeTypeForUrl(QUrl(info.filePath())).iconName()));
+*/
 }
