@@ -167,8 +167,12 @@ IconView::IconView(int id, QString rootPath) {
             openAction->setEnabled(true);
             trashAction->setEnabled(true);
             copyAction->setEnabled(true);
+            renameAction->setEnabled(false);
             if (selectedIndexes().count() == 1) {
-                renameAction->setEnabled(true);
+                QString fileName = selectedIndexes().first().data().toString();
+                if (!fileName.endsWith(".desktop")) {
+                    renameAction->setEnabled(true);
+                }
             }
         }
         viewMenu->exec(QCursor::pos());
