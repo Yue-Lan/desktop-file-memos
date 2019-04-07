@@ -97,6 +97,8 @@ TitleWidget::TitleWidget(int id, QString title) {
     mTitle = title;
     setFixedHeight(31);
 
+    setCursor(Qt::ArrowCursor);
+
     QLabel *titleLabel = new QLabel(this);
     titleLabel->setEnabled(true);
     titleLabel->setText(title);

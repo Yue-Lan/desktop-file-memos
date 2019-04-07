@@ -51,7 +51,8 @@
 IconView::IconView(int id, QString rootPath) {
 
     setAttribute(Qt::WA_TranslucentBackground, true);
-    setMouseTracking(true);
+    //setMouseTracking(true);
+    setCursor(Qt::ArrowCursor);
 
     setStyleSheet("color: white;"
                   "font-size:16px;"
@@ -290,7 +291,7 @@ void IconView::mousePressEvent(QMouseEvent *e) {
 }
 
 void IconView::mouseMoveEvent(QMouseEvent *e) {
-    setCursor(Qt::ArrowCursor);
+    //setCursor(Qt::ArrowCursor);
     return QListView::mouseMoveEvent(e);
 }
 
