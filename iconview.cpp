@@ -33,6 +33,8 @@
 #include <QDesktopServices>
 #include <QUrl>
 
+#include <gio/gdesktopappinfo.h>
+
 #include <QMenu>
 #include <QAction>
 
@@ -179,11 +181,27 @@ IconView::IconView(int id, QString rootPath) {
     });
 
     connect(openAction, &QAction::triggered, [=](){
-       QModelIndexList list = selectedIndexes();
-       for (int i = 0; i < list.count(); i++) {
-           QUrl url("file://"+fileModel->filePath(list.at(i)));
-           QDesktopServices::openUrl(url);
-       }
+        QModelIndexList list = selectedIndexes();
+        for (int i = 0; i < list.count(); i++) {
+            if (!fileModel->filePath(list.at(i)).endsWith(QString(".desktop"))) {
+                QUrl url("file://"+fileModel->filePath(list.at(i)));
+                QDesktopServices::openUrl(url);
+            } else {
+                std::string tmp_str = fileModel->filePath(list.at(i)).toStdString();
+                const char* file_path = tmp_str.c_str();
+                GDesktopAppInfo *app_info = g_desktop_app_info_new_from_filename(file_path);
+                g_desktop_app_info_launch_uris_as_manager (app_info,
+                                                           nullptr,
+                                                           nullptr,
+                                                           G_SPAWN_DEFAULT,
+                                                           nullptr,
+                                                           nullptr,
+                                                           nullptr,
+                                                           nullptr,
+                                                           nullptr);
+                g_object_unref(app_info);
+            }
+        }
     });
 
     connect(selectAllAction, &QAction::triggered, [=](){
@@ -231,9 +249,28 @@ IconView::IconView(int id, QString rootPath) {
     });
 
     connect(this, &IconView::doubleClicked, [=](){
-        if (this->selectedIndexes().count() == 1) {
-            QUrl url("file://"+fileModel->filePath(selectedIndexes().at(0)));
-            QDesktopServices::openUrl(url);
+        QModelIndexList list = selectedIndexes();
+        if (list.count() == 1) {
+            qDebug()<<fileModel->filePath(list.at(0));
+            if (!fileModel->filePath(list.at(0)).endsWith(QString(".desktop"))) {
+                QUrl url("file://"+fileModel->filePath(list.at(0)));
+                QDesktopServices::openUrl(url);
+            } else {
+                qDebug()<<"desktop file";
+                std::string tmp_str = fileModel->filePath(list.at(0)).toStdString();
+                const char* file_path = tmp_str.c_str();
+                GDesktopAppInfo *app_info = g_desktop_app_info_new_from_filename(file_path);
+                g_desktop_app_info_launch_uris_as_manager (app_info,
+                                                           nullptr,
+                                                           nullptr,
+                                                           G_SPAWN_DEFAULT,
+                                                           nullptr,
+                                                           nullptr,
+                                                           nullptr,
+                                                           nullptr,
+                                                           nullptr);
+                g_object_unref(app_info);
+            }
         }
     });
 }
