@@ -29,11 +29,44 @@
 #include <QFile>
 #include <QDir>
 
+#include <glib.h>
+#include <gio/gio.h>
+#include <gio/gdesktopappinfo.h>
+
 #include <QThread>
 #include <QDebug>
 
 Delegate::Delegate() {
 
+}
+
+QString Delegate::displayText(const QVariant &value, const QLocale &locale) const {
+    QString text = value.toString();
+    if (!text.endsWith(QString(".desktop"))) {
+        return text;
+    }
+    QString keyWord = "Name["+locale.name()+"]";
+    std::string tmp_key = keyWord.toStdString();
+
+    QString filePath = mModel->filePath(mIconView->rootIndex()) + "/" + text;
+    std::string tmp_str = filePath.toStdString();
+    const char* file_path = tmp_str.c_str();
+    GDesktopAppInfo *desktop_app_info = g_desktop_app_info_new_from_filename(file_path);
+    text = QString(g_desktop_app_info_get_generic_name(desktop_app_info));
+
+    if (desktop_app_info != nullptr) {
+        char* tmp_name = g_desktop_app_info_get_string(desktop_app_info, tmp_key.c_str());
+        if (tmp_name != nullptr) {
+            text = QString(tmp_name);
+            g_free (tmp_name);
+        } else {
+            text = QString(g_desktop_app_info_get_generic_name(desktop_app_info));
+        }
+
+        g_object_unref(desktop_app_info);
+    }
+
+    return text;
 }
 
 QWidget *Delegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const {
