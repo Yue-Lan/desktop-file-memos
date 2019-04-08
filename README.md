@@ -1,6 +1,8 @@
 # desktop-file-memos
 A desktop classification app on Linux.
 
+See also ![README_CN.md](https://github.com/Yue-Lan/desktop-file-memos/blob/master/README_CN.md)
+
 # build depends
 - qt5-default
 - libqt5x11extra5-dev
