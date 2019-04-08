@@ -52,7 +52,6 @@ QString Delegate::displayText(const QVariant &value, const QLocale &locale) cons
     std::string tmp_str = filePath.toStdString();
     const char* file_path = tmp_str.c_str();
     GDesktopAppInfo *desktop_app_info = g_desktop_app_info_new_from_filename(file_path);
-    text = QString(g_desktop_app_info_get_generic_name(desktop_app_info));
 
     if (desktop_app_info != nullptr) {
         char* tmp_name = g_desktop_app_info_get_string(desktop_app_info, tmp_key.c_str());
@@ -60,7 +59,11 @@ QString Delegate::displayText(const QVariant &value, const QLocale &locale) cons
             text = QString(tmp_name);
             g_free (tmp_name);
         } else {
-            text = QString(g_desktop_app_info_get_generic_name(desktop_app_info));
+            tmp_name = g_desktop_app_info_get_string(desktop_app_info, "Name");
+            if (tmp_name != nullptr) {
+                text = QString(tmp_name);
+                g_free (tmp_name);
+            }
         }
 
         g_object_unref(desktop_app_info);
