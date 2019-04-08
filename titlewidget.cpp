@@ -119,7 +119,7 @@ TitleWidget::TitleWidget(int id, QString title) {
     QAction *renameAction = new QAction(titleWidgetMenu);
     renameAction->setText(tr("rename"));
     QAction *restoreAction = new QAction(titleWidgetMenu);
-    restoreAction->setText(tr("restore to desltop"));
+    restoreAction->setText(tr("restore to desktop"));
     QAction *deleteAction = new QAction(titleWidgetMenu);
     deleteAction->setText(tr("delete window"));
     titleWidgetMenu->addAction(renameAction);
