@@ -1,7 +1,12 @@
 # desktop-file-memos
 A desktop classification app on Linux.
 
-See also ![README_CN.md](https://github.com/Yue-Lan/desktop-file-memos/blob/master/README_CN.md)
+See also [README_CN.md](https://github.com/Yue-Lan/desktop-file-memos/blob/master/README_CN.md)
+
+# for gtk-theme
+There is a qt official plugins which package named 'qt5-gtk-platformtheme', this is a recommend package of this one. If you desktop is gtk-based and want this application use your system theme. You just should:
+
+- sudo apt install qt5-gtk-platformtheme
 
 # build depends
 - qt5-default
