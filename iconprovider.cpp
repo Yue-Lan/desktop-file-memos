@@ -83,10 +83,12 @@ QIcon IconProvider::icon(const QFileInfo &info) const {
         }
         return fileIcon;
     }
-
+/*
     if (mimeDatabase->mimeTypeForUrl(QUrl(info.filePath())).aliases().isEmpty()) {
+        qDebug()<<mimeDatabase->mimeTypeForFile(info).iconName();
         return QIcon::fromTheme(mimeDatabase->mimeTypeForFile(info).iconName());
     } else {
+    */
         QString filePath = info.filePath();
         std::string str = filePath.toStdString();
         const char* file_path = str.c_str();
@@ -100,7 +102,8 @@ QIcon IconProvider::icon(const QFileInfo &info) const {
         GIcon *g_icon = g_file_info_get_icon (file_info);
         const gchar* const* icon_names = g_themed_icon_get_names(G_THEMED_ICON (g_icon));
         QString iconName = QString (*icon_names);
-        while (iconName.contains(".")) {
+        while (iconName.contains(".") || iconName.contains("/")) {
+            qDebug()<<*icon_names;
             icon_names++; //we need use second string, first string is not correct some times (for example, a wps-office-doc).
             iconName = QString (*icon_names);
         }
@@ -108,6 +111,6 @@ QIcon IconProvider::icon(const QFileInfo &info) const {
         g_object_unref(file_info);
         g_object_unref(g_file);
         return icon;
-    }
+    //}
 
 }
