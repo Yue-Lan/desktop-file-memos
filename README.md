@@ -4,7 +4,7 @@ A desktop classification app on Linux.
 See also [README_CN.md](https://github.com/Yue-Lan/desktop-file-memos/blob/master/README_CN.md)
 
 # installing on ubuntu
-It provides a ppa for ubuntu's installtion. After the installation is completed you need to start it manually, or log out and log in before logging in. It will start automatically.
+It provides a ppa for ubuntu's installtion. After the installation is completed you need to start it manually, or log out and log in again. It will start automatically.
 - sudo add-apt-repository ppa:larue/desktop-file-memos
 - sudo apt-get update
 - sudo apt-get install desktop-file-memos
