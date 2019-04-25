@@ -3,6 +3,12 @@ A desktop classification app on Linux.
 
 See also [README_CN.md](https://github.com/Yue-Lan/desktop-file-memos/blob/master/README_CN.md)
 
+# installing on ubuntu
+It provides a ppa for ubuntu's installtion. After the installation is completed you need to start it manually, or log out and log in before logging in. It will start automatically.
+- sudo add-apt-repository ppa:larue/desktop-file-memos
+- sudo apt-get update
+- sudo apt-get install desktop-file-memos
+
 # for gtk-theme
 There is a qt official plugins package which named 'qt5-gtk-platformtheme', this is a recommend package of this project. If your desktop is gtk-based and you want this application use your system theme. You need:
 
