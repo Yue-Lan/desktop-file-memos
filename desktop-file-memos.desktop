@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Desktop File Memos
+Name[zh_CN]=文件便笺
+Icon=user-desktop
+Exec=/usr/bin/desktop-file-memos
