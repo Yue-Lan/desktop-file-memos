@@ -5,7 +5,7 @@ See also [README_CN.md](https://github.com/Yue-Lan/desktop-file-memos/blob/maste
 
 # installing on ubuntu
 It provides a ppa for ubuntu's installtion. After the installation is completed you need to start it manually, or log out and log in again. It will start automatically.
-- sudo add-apt-repository ppa:larue/desktop-file-memos
+- sudo add-apt-repository ppa:larue/experiment-apps
 - sudo apt-get update
 - sudo apt-get install desktop-file-memos
 
