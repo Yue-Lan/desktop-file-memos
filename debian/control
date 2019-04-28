@@ -1,0 +1,32 @@
+Source: desktop-file-memos
+Section: utils
+Priority: optional
+Maintainer: Yue Lan <lanyue@kylinos.cn>
+Build-Depends: debhelper (>= 11),
+               libglib2.0-dev,
+               libqt5x11extras5-dev,
+               libx11-dev,
+               pkg-config,
+               qt5-default,
+               qt5-qmake,
+               qtbase5-dev,
+               qtbase5-dev-tools,
+               qtchooser
+
+Standards-Version: 4.3.0
+Homepage: http://www.ukui.org/
+Package: desktop-file-memos
+Architecture: all
+Depends: libglib2.0-0,
+         libqt5core5a (>=5.9),
+         libqt5gui5 (>=5.9),
+         libqt5widgets5 (>=5.9),
+         libqt5x11extras5 (>=5.9),
+         libx11-6,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: qt5-gtk-pltformtheme
+Description: A desktop classification app on Linux
+ This package is used for desktop classification, which like the 'Fences' for Windows.
+ .
+ For more description see https://github.com/Yue-Lan/desktop-file-memos

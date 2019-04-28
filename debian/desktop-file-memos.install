@@ -1,0 +1,3 @@
+desktop-file-memos /usr/bin
+desktop-file-memos.desktop /etc/xdg/autostart
+desktop-file-memos.desktop /usr/share/applications
