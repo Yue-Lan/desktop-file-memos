@@ -1,3 +1,21 @@
+desktop-file-memos (1.0-2ubuntu1904) disco; urgency=medium
+
+  * New release for disco.
+
+ -- Yue Lan <lanyue@kylinos.cn>  Sun, 28 Apr 2019 11:17:05 +0800
+
+desktop-file-memos (1.0-2ubuntu1810) cosmic; urgency=medium
+
+  * New release for cosmic.
+
+ -- Yue Lan <lanyue@kylinos.cn>  Sun, 28 Apr 2019 11:15:35 +0800
+
+desktop-file-memos (1.0-2ubuntu1804) bionic; urgency=medium
+
+  * debain/control: Fixed the error spelling 'pl(a)tform'.
+
+ -- Yue Lan <lanyue@kylinos.cn>  Sun, 28 Apr 2019 11:09:51 +0800
+
 desktop-file-memos (1.0-1ubuntu1904) disco; urgency=medium
 
   * Release for disco.

@@ -25,7 +25,7 @@ Depends: libglib2.0-0,
          libx11-6,
          ${misc:Depends},
          ${shlibs:Depends}
-Recommends: qt5-gtk-pltformtheme
+Recommends: qt5-gtk-platformtheme
 Description: A desktop classification app on Linux
  This package is used for desktop classification, which like the 'Fences' for Windows.
  .
