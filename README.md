@@ -20,6 +20,9 @@ There is a qt official plugins package which named 'qt5-gtk-platformtheme', this
 - libx11-dev
 - libglib2.0-dev
 
+# build depends for ubuntu 22.04
+- sudo apt install gcc g++ qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5x11extras5-dev libx11-dev libglib2.0-dev
+
 # build && test
 - mkdir build && cd build
 - qmake ..
